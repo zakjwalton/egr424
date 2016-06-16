@@ -1,0 +1,3 @@
+#!/bin/sh
+# NOTE: The command below is all on one line
+arm-none-eabi-gcc -Wall -O3 -march=armv7-m -mcpu=cortex-m3 -mthumb -mfix-cortex-m3-ldrd -o lab3.elf -Os -g -I C:/StellarisWare/boards/ek-lm3s6965 -I C:/StellarisWare -T lab3.ld -Wl,--gc-sections -L C:/StellarisWare/driverlib/gcc-cm3 -Wl,--entry=ResetISR startup_gcc.c lab3.c C:/StellarisWare/boards/ek-lm3s6965/drivers/rit128x96x4.c -ldriver-cm3 

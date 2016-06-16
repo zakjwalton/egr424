@@ -1,0 +1,42 @@
+# The C:/StellarisWare directory
+ROOT=../../..
+
+# Where the driver library is
+DRIVERLIBDIR=${ROOT}/driverlib/gcc
+
+# Where the OLED driver is
+OLEDDIR=${ROOT}/boards/ek-lm3s6965/drivers
+
+# The basic compiler command and flags
+CC=arm-none-eabi-gcc \
+   -Wall \
+   -Os \
+   -march=armv7-m -mcpu=cortex-m3 -mthumb -mfix-cortex-m3-ldrd \
+   -ffunction-sections -fdata-sections \
+   -std=c99 -Wall -pedantic -DPART_LM3S6965 -Dgcc \
+   -I${ROOT}
+
+# What directories contain sources and targets (besides the
+# current directory)
+VPATH=${OLEDDIR}
+
+# This creates the .BIN file once the .AXF file is created
+gcc/blinky.bin: gcc/blinky.axf
+	arm-none-eabi-objcopy -O binary gcc/blinky.axf gcc/blinky.bin
+
+# This creates the .AXF file if any of the dependencies change
+gcc/blinky.axf: blinky.c startup_gcc.c blinky.ld
+	${CC} -o gcc/blinky.axf \
+	      -Wl,-T,blinky.ld \
+	      -Wl,--entry,ResetISR \
+	      -Wl,--gc-sections \
+	      blinky.c startup_gcc.c \
+	      -L ${DRIVERLIB} -ldriver
+
+# This "pseudo-target" removes the target and intermediate files
+.PHONY: clean
+clean:
+	rm -rf gcc
+	mkdir gcc
+
+# vim: noexpandtab

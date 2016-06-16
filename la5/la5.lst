@@ -1,0 +1,75 @@
+ARM GAS  C:\cygwin\tmp\ccVzrMck.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 18, 4
+  12              		.thumb
+  13              		.file	"la5.c"
+  14              		.text
+  15              		.align	1
+  16              		.global	test
+  17              		.thumb
+  18              		.thumb_func
+  19              		.type	test, %function
+  20              	test:
+  21              		@ args = 4, pretend = 16, frame = 8
+  22              		@ frame_needed = 0, uses_anonymous_args = 1
+  23 0000 0FB4     		push	{r0, r1, r2, r3}
+  24 0002 13B5     		push	{r0, r1, r4, lr}
+  25 0004 04AB     		add	r3, sp, #16
+  26 0006 53F8044B 		ldr	r4, [r3], #4
+  27 000a 0193     		str	r3, [sp, #4]
+  28 000c 06E0     		b	.L2
+  29              	.L3:
+  30 000e 019B     		ldr	r3, [sp, #4]
+  31 0010 013C     		subs	r4, r4, #1
+  32 0012 1A1D     		adds	r2, r3, #4
+  33 0014 1868     		ldr	r0, [r3, #0]
+  34 0016 0192     		str	r2, [sp, #4]
+  35 0018 FFF7FEFF 		bl	func
+  36              	.L2:
+  37 001c 002C     		cmp	r4, #0
+  38 001e F6D1     		bne	.L3
+  39 0020 BDE81C40 		pop	{r2, r3, r4, lr}
+  40 0024 04B0     		add	sp, sp, #16
+  41 0026 7047     		bx	lr
+  42              		.size	test, .-test
+  43              		.align	1
+  44              		.global	testtest
+  45              		.thumb
+  46              		.thumb_func
+  47              		.type	testtest, %function
+  48              	testtest:
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+  52 0028 0520     		movs	r0, #5
+  53 002a 0121     		movs	r1, #1
+  54 002c 0222     		movs	r2, #2
+  55 002e 0323     		movs	r3, #3
+  56 0030 FEE7     		b	test
+  57              		.size	testtest, .-testtest
+ARM GAS  C:\cygwin\tmp\ccVzrMck.s 			page 2
+
+
+  58              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"
+ARM GAS  C:\cygwin\tmp\ccVzrMck.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 la5.c
+C:\cygwin\tmp\ccVzrMck.s:15     .text:00000000 $t
+C:\cygwin\tmp\ccVzrMck.s:20     .text:00000000 test
+C:\cygwin\tmp\ccVzrMck.s:48     .text:00000028 testtest
+
+UNDEFINED SYMBOLS
+func

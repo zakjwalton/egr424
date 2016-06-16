@@ -1,0 +1,41 @@
+ARM GAS  C:\cygwin\tmp\ccPppzDs.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 18, 4
+  12              		.thumb
+  13              		.file	"test.c"
+  14              		.text
+  15              		.align	2
+  16              		.global	func
+  17              		.thumb
+  18              		.thumb_func
+  19              		.type	func, %function
+  20              	func:
+  21              		@ Naked Function: prologue and epilogue provided by programmer.
+  22              		@ args = 0, pretend = 0, frame = 0
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24              	@ 4 "test.c" 1
+  25 0000 0AEB6913 		add.w R3, R10, R9, ASR #5
+  26              	@ 0 "" 2
+  27              		.thumb
+  28              		.size	func, .-func
+  29              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"
+ARM GAS  C:\cygwin\tmp\ccPppzDs.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 test.c
+C:\cygwin\tmp\ccPppzDs.s:15     .text:00000000 $t
+C:\cygwin\tmp\ccPppzDs.s:20     .text:00000000 func
+
+NO UNDEFINED SYMBOLS

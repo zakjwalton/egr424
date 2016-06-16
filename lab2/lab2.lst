@@ -1,0 +1,67 @@
+ARM GAS  lab2.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 18, 4
+  12              		.thumb
+  13              		.file	"lab2.c"
+  14              		.global	__aeabi_ldivmod
+  15              		.text
+  16              		.align	2
+  17              		.global	func
+  18              		.thumb
+  19              		.thumb_func
+  20              		.type	func, %function
+  21              	func:
+  22              		@ args = 0, pretend = 0, frame = 0
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24 0000 38B5     		push	{r3, r4, r5, lr}
+  25 0002 40F20004 		movw	r4, #:lower16:gLast
+  26 0006 C0F20004 		movt	r4, #:upper16:gLast
+  27 000a 0246     		mov	r2, r0
+  28 000c 0B46     		mov	r3, r1
+  29 000e 2060     		str	r0, [r4, #0]
+  30 0010 09A5     		adr	r5, .L5
+  31 0012 D5E90045 		ldrd	r4, [r5]
+  32 0016 9442     		cmp	r4, r2
+  33 0018 75EB030C 		sbcs	ip, r5, r3
+  34 001c 06DA     		bge	.L2
+  35 001e 4FF47A72 		mov	r2, #1000
+  36 0022 0023     		movs	r3, #0
+  37 0024 FFF7FEFF 		bl	__aeabi_ldivmod
+  38 0028 0246     		mov	r2, r0
+  39 002a 0B46     		mov	r3, r1
+  40              	.L2:
+  41 002c 1946     		mov	r1, r3
+  42 002e 1046     		mov	r0, r2
+  43 0030 38BD     		pop	{r3, r4, r5, pc}
+  44              	.L6:
+  45 0032 00BFAFF3 		.align	3
+  45      0080
+  46              	.L5:
+  47 0038 4D61BC00 		.word	12345677
+  48 003c 00000000 		.word	0
+  49              		.size	func, .-func
+  50              		.comm	gLast,4,4
+  51              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"
+ARM GAS  lab2.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 lab2.c
+              lab2.s:16     .text:00000000 $t
+              lab2.s:21     .text:00000000 func
+                            *COM*:00000004 gLast
+              lab2.s:47     .text:00000038 $d
+
+UNDEFINED SYMBOLS
+__aeabi_ldivmod
