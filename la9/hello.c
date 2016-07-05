@@ -91,7 +91,7 @@ int main(void)
             if(toggle)
             {
                 //Draw hello world
-                RIT128x96x4StringDraw("Hello World!", 30, 24, 15);
+                RIT128x96x4StringDraw("Hello Karl!", 30, 24, 15);
             }
             else
             {
